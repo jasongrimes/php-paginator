@@ -1,0 +1,38 @@
+{% if paginator.numPages > 1 %}
+    <div style="width: {{ paginator.nextUrl and paginator.prevUrl ? '210px' : '150px' }}">
+        <div class="input-group">
+            {% if paginator.prevUrl %}
+                <span class="input-group-btn">
+                    <a href="{{ paginator.prevUrl }}" class="btn btn-default" type="button">&laquo; Prev</a>
+                </span>
+            {% endif %}
+
+            <select class="form-control paginator-select-page" style="-webkit-appearance: none; -moz-appearance: none; appearance: none;">
+                {% for page in paginator.pages %}
+                    {% if page.url %}
+                        <option value="{{ page.url }}"{{ page.isCurrent ? 'selected' : '' }}>
+                            Page {{ page.num }}
+                        </option>
+                    {% else %}
+                        <option disabled>{{ page.num }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+            {% if paginator.nextUrl %}
+                <span class="input-group-btn">
+                    <a href="{{ paginator.nextUrl }}" class="btn btn-default" type="button">Next &raquo;</a>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+
+{# Depends on this little bit of javascript being included somewhere:
+    $(function() {
+        $('.paginator-select-page').on('change', function() {
+            document.location = $(this).val();
+        });
+    });
+#}
+

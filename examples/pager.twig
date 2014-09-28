@@ -1,0 +1,19 @@
+{% if paginator.numPages > 1 %}
+    <ul class="pagination">
+        {% if paginator.prevUrl %}
+            <li><a href="{{ paginator.prevUrl }}">&laquo; Previous</a></li>
+        {% endif %}
+
+        {% for page in paginator.pages %}
+            {% if page.url %}
+                <li {{ page.isCurrent ? 'class="active"' : '' }}><a href="{{ page.url }}">{{ page.num }}</a></li>
+            {% else %}
+                <li class="disabled"><span>{{ page.num }}</span></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if paginator.nextUrl %}
+            <li><a href="{{ paginator.nextUrl }}">Next &raquo;</a></li>
+        {% endif %}
+    </ul>
+{% endif %}
