@@ -1,6 +1,9 @@
 PHP Paginator
 =============
 
+[![Build Status](https://travis-ci.org/jasongrimes/php-paginator.svg?branch=master)](https://travis-ci.org/jasongrimes/php-paginator)
+[![Latest Stable Version](https://poser.pugx.org/jasongrimes/paginator/v/stable.svg)](https://packagist.org/packages/jasongrimes/paginator) [![Total Downloads](https://poser.pugx.org/jasongrimes/paginator/downloads.svg)](https://packagist.org/packages/jasongrimes/paginator) [![Latest Unstable Version](https://poser.pugx.org/jasongrimes/paginator/v/unstable.svg)](https://packagist.org/packages/jasongrimes/paginator) [![License](https://poser.pugx.org/jasongrimes/paginator/license.svg)](https://packagist.org/packages/jasongrimes/paginator)
+
 A lightweight PHP paginator, for generating pagination controls like Stack Overflow or Flickr.
 
 ## Installation
