@@ -279,7 +279,7 @@ class Paginator
 
         $html = '<ul class="pagination">';
         if ($this->getPrevUrl()) {
-            $html .= '<li><a href="{{ paginator.prevUrl }}">&laquo; Previous</a></li>';
+            $html .= '<li><a href="' . $this->getPrevUrl() . '">&laquo; Previous</a></li>';
         }
 
         foreach ($this->getPages() as $page) {
