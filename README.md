@@ -25,7 +25,7 @@ Small template (useful for mobile interfaces):
 <img src="examples/screenshot-small-mid.png" width="220"><br/>
 <img src="examples/screenshot-small-last.png" width="157"><br/>
 
-The page number is rendered as a select list to save space:
+The small template renders the page number as a select list to save space:
 
 <img src="examples/screenshot-small-mid-open.png" width="218">
 
