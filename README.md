@@ -42,7 +42,7 @@ Here's a quick example using the defaults:
       </body>
     </html>
 
-This will output something like the following:
+This will output the following:
 
 ![Screenshot of default template](examples/screenshot-default-template.png)
 
@@ -63,11 +63,38 @@ This will output something like the following:
       <li><a href="/foo/page/9">Next &raquo;</a></li>
     </ul>
 
+## Rendering a custom pagination control
+
+Use `$paginator->getPages()`, `$paginator->getNextUrl()`, and `$paginator->getPrevUrl()` to render a pagination control with your own HTML.
+For example:
+
+    <ul class="pagination">
+        <?php if ($paginator->getPrevUrl()): ?>
+            <li><a href="<?php echo $paginator->getPrevUrl(); ?>">&laquo; Previous</a></li>
+        <?php endif; ?>
+
+        <?php foreach ($paginator->getPages() as $page): ?>
+            <?php if ($page['url']): ?>
+                <li <?php echo $page['isCurrent'] ? 'class="active"' : ''; ?>>
+                    <a href="<?php echo $page['url']; ?>"><?php echo $page['num']; ?></a>
+                </li>
+            <?php else: ?>
+                <li class="disabled"><span><?php echo $page['num']; ?></span></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        <?php if ($paginator->getNextUrl()): ?>
+            <li><a href="<?php echo $paginator->getNextUrl(); ?>">Next &raquo;</a></li>
+        <?php endif; ?>
+    </ul>
+
+See the [examples](examples) directory for more sample templates.
+
 ## Pages data structure
 
     $paginator->getPages();
 
-This will return a data structure like the following:
+`getPages()` returns a data structure like the following:
 
     array ( 
         array ('num' => 1, 'url' => '/foo/page/1', 'isCurrent' => false),
@@ -83,12 +110,6 @@ This will return a data structure like the following:
         array ('num' => '...', 'url' => NULL, 'isCurrent' => false),
         array ('num' => 20, 'url' => '/foo/page/20', 'isCurrent' => false),
     )
-
-Iterate over this data structure to render a custom pagination control.
-
-## Rendering a custom pagination control
-
-See the [examples](examples) directory for sample templates for rendering pagination controls.
 
 ## Customizing the number of pages shown
 
