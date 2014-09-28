@@ -6,7 +6,7 @@ PHP Paginator
 
 A lightweight PHP paginator, for generating pagination controls like Stack Overflow or Flickr.
 
-## Examples
+## Screenshots
 
 These examples show how the paginator handles overflow when there are a lot of pages.
 They're rendered using the sample templates provided in the examples directory,
@@ -14,15 +14,15 @@ which depend on Twitter Bootstrap CSS.
 
 Default template:
 
-<img src="examples/screenshot-default-first.png" width="447">
-<img src="examples/screenshot-default-mid.png" width="597">
-<img src="examples/screenshot-default-last.png" width="534">
+<img src="examples/screenshot-default-first.png" width="447"><br/>
+<img src="examples/screenshot-default-mid.png" width="597"><br/>
+<img src="examples/screenshot-default-last.png" width="534"><br/>
 
 Small pager control (useful for mobile interfaces):
 
-<img src="examples/screenshot-small-first.png" width="157">
-<img src="examples/screenshot-small-mid.png" width="220">
-<img src="examples/screenshot-small-last.png" width="157">
+<img src="examples/screenshot-small-first.png" width="157"><br/>
+<img src="examples/screenshot-small-mid.png" width="220"><br/>
+<img src="examples/screenshot-small-last.png" width="157"><br/>
 
 The page number is a styled select list:
 
