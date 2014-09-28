@@ -91,6 +91,15 @@ This will output the following:
       <li><a href="/foo/page/20">20</a></li>
       <li><a href="/foo/page/9">Next &raquo;</a></li>
     </ul>
+    
+To render it with one of the other example templates, just make sure the variable is named `$paginator` and then include the template file:
+
+    $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+    include '../vendor/jasongrimes/paginator/examples/pagerSmall.phtml';
+    
+<img src="examples/screenshot-small-mid.png" width="220"><br/>
+
+If the example templates don't suit you, you can iterate over the paginated data to render your own pagination control.
 
 ## Rendering a custom pagination control
 
