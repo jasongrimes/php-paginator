@@ -25,6 +25,7 @@ Here's a quick example using the defaults:
     $urlPattern = '/foo/page/(:num)';
 
     $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+
     ?>
     <html>
       <head>
@@ -43,6 +44,8 @@ Here's a quick example using the defaults:
 
 This will output something like the following:
 
+![Screenshot of default template](examples/screenshot-default-template.png)
+
     <ul class="pagination">
       <li><a href="/foo/page/7">&laquo; Previous</a></li>
       <li><a href="/foo/page/1">1</a></li>
@@ -60,5 +63,37 @@ This will output something like the following:
       <li><a href="/foo/page/9">Next &raquo;</a></li>
     </ul>
 
-![Screenshot of default template](examples/screenshot-default-template.png)
+## Pages data structure
+
+    $paginator->getPages();
+
+This will return a data structure like the following:
+
+    array ( 
+        array ('num' => 1, 'url' => '/foo/page/1', 'isCurrent' => false),
+        array ('num' => '...', 'url' => NULL, 'isCurrent' => false),
+        array ('num' => 5, 'url' => '/foo/page/5', 'isCurrent' => false),
+        array ('num' => 6, 'url' => '/foo/page/6', 'isCurrent' => false),
+        array ('num' => 7, 'url' => '/foo/page/7', 'isCurrent' => false),
+        array ('num' => 8, 'url' => '/foo/page/8', 'isCurrent' => true),
+        array ('num' => 9, 'url' => '/foo/page/9', 'isCurrent' => false),
+        array ('num' => 10, 'url' => '/foo/page/10', 'isCurrent' => false),
+        array ('num' => 11, 'url' => '/foo/page/11', 'isCurrent' => false),
+        array ('num' => 12, 'url' => '/foo/page/12', 'isCurrent' => false),
+        array ('num' => '...', 'url' => NULL, 'isCurrent' => false),
+        array ('num' => 20, 'url' => '/foo/page/20', 'isCurrent' => false),
+    )
+
+Iterate over this data structure to render a custom pagination control.
+
+## Rendering a custom pagination control
+
+See the [examples](examples) directory for sample templates for rendering pagination controls.
+
+## Customizing the number of pages shown
+
+By default, no more than 10 pages are shown, including the first and last page, with the overflow replaced by ellipses.
+To change the default number of pages:
+
+    $paginator->setMaxPagesToShow(5);
 
