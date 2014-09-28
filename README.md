@@ -10,9 +10,9 @@ A lightweight PHP paginator, for generating pagination controls like Stack Overf
 
 Install with composer: 
 
-    composer require "jasongrimes/paginator: ~0.1"
+    composer require "jasongrimes/paginator:~0.1"
 
-## Usage
+## Basic usage
 
 Here's a quick example using the defaults:
 
@@ -32,13 +32,15 @@ Here's a quick example using the defaults:
     ?>
     <html>
       <head>
-        <!-- The default template supports the Twitter Bootstrap pagination styles. -->
+        <!-- The default, built-in template supports the Twitter Bootstrap pagination styles. -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
       </head>
       <body>
 
         <?php 
-          // Render with the default, built-in template.
+          // Example of rendering the pagination control with the default, built-in template.
+          // You can also iterate over the pages and render them manually. See below for details.
+
           echo $paginator; 
         ?>
 
