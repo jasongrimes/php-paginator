@@ -49,7 +49,7 @@ Here's a quick example using the defaults:
 
 This will output the following:
 
-![Screenshot of default template](examples/screenshot-default-template.png)
+![Screenshot of default template](examples/screenshot-default-mid.png)
 
     <ul class="pagination">
       <li><a href="/foo/page/7">&laquo; Previous</a></li>
