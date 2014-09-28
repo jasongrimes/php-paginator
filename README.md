@@ -11,7 +11,7 @@ A lightweight PHP paginator, for generating pagination controls like Stack Overf
 These examples show how the paginator handles overflow when there are a lot of pages.
 They're rendered using the sample templates provided in the [examples](examples/) directory,
 which depend on Twitter Bootstrap. 
-You can easily render the pagination with your own custom HTML instead.
+You can easily use your own custom HTML to render the pagination control instead.
 
 Default template:
 
