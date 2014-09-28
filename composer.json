@@ -1,0 +1,29 @@
+{
+    "name": "jasongrimes/php-paginator",
+    "type": "library",
+    "description": "A lightweight PHP paginator, for generating pagination controls like Stack Overflow or Flickr.",
+    "keywords": ["paginator", "pagination", "pager"],
+    "homepage": "http://github.com/jasongrimes/paginator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason Grimes",
+            "email": "jason@grimesit.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.2",
+    },
+    "autoload": {
+        "psr-0": {"JasonGrimes": "src/"}
+    },
+    "autoload-dev": {
+        "psr-0": {"JasonGrimes\\Tests": "tests/"}
+    }
+
+}
+
+
