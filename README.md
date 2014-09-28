@@ -8,24 +8,10 @@ A lightweight PHP paginator, for generating pagination controls like Stack Overf
 
 ## Examples
 
-    $totalItems = 1000;
-    $itemsPerPage = 50;
-    $urlPattern = '/foo/page/(:num)';
-    $currentPage = 1;
-    
-    $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
-    echo $paginator;
+Default template:
 
 <img src="examples/screenshot-default-first.png" width="447">
-
-    $paginator->setCurrentPage(8);
-    echo $paginator;
-
 <img src="examples/screenshot-default-mid.png" width="597">
-
-    $paginator->setCurrentPage(20);
-    echo $paginator;
-
 <img src="examples/screenshot-default-last.png" width="534">
 
 ## Installation
