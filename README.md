@@ -12,18 +12,21 @@ A lightweight PHP paginator, for generating pagination controls like Stack Overf
     $itemsPerPage = 50;
     $urlPattern = '/foo/page/(:num)';
     $currentPage = 1;
-
+    
     $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+    echo $paginator;
 
 <img src="examples/screenshot-default-first.png" width="447">
 
     $paginator->setCurrentPage(8);
+    echo $paginator;
 
-![](examples/screenshot-default-mid.png)
+<img src="examples/screenshot-default-mid.png" width="597">
 
     $paginator->setCurrentPage(20);
+    echo $paginator;
 
-![](examples/screenshot-default-last.png)
+<img src="examples/screenshot-default-last.png" width="534">
 
 ## Installation
 
@@ -68,7 +71,7 @@ Here's a quick example using the defaults:
 
 This will output the following:
 
-![Screenshot of default template](examples/screenshot-default-mid.png)
+<img src="examples/screenshot-default-mid.png" width="597">
 
     <ul class="pagination">
       <li><a href="/foo/page/7">&laquo; Previous</a></li>
