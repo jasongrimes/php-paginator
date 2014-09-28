@@ -25,7 +25,7 @@ Small pager control (useful for mobile interfaces):
 <img src="examples/screenshot-small-mid.png" width="220"><br/>
 <img src="examples/screenshot-small-last.png" width="157"><br/>
 
-The page number is a styled select list:
+The page number is rendered as a select list to save space:
 
 <img src="examples/screenshot-small-mid-open.png" width="218">
 
