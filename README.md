@@ -6,24 +6,29 @@ PHP Paginator
 
 A lightweight PHP paginator, for generating pagination controls like Stack Overflow or Flickr.
 
-## Examples
+## Screenshots
 
-    $totalItems = 1000;
-    $itemsPerPage = 50;
-    $urlPattern = '/foo/page/(:num)';
-    $currentPage = 1;
+These examples show how the paginator handles overflow when there are a lot of pages.
+They're rendered using the sample templates provided in the [examples](examples/) directory,
+which depend on Twitter Bootstrap CSS. 
+It's also easy render the pagination with your own custom HTML instead.
 
-    $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+Default template:
 
-![](examples/screenshot-default-first.png)
+<img src="examples/screenshot-default-first.png" width="447"><br/>
+<img src="examples/screenshot-default-mid.png" width="597"><br/>
+<img src="examples/screenshot-default-last.png" width="534"><br/>
 
-    $paginator->setCurrentPage(8);
+Small pager control (useful for mobile interfaces):
 
-![](examples/screenshot-default-mid.png)
+<img src="examples/screenshot-small-first.png" width="157"><br/>
+<img src="examples/screenshot-small-mid.png" width="220"><br/>
+<img src="examples/screenshot-small-last.png" width="157"><br/>
 
-    $paginator->setCurrentPage(20);
+The page number is a styled select list:
 
-![](examples/screenshot-default-last.png)
+<img src="examples/screenshot-small-mid-open.png" width="218">
+
 
 ## Installation
 
@@ -68,7 +73,7 @@ Here's a quick example using the defaults:
 
 This will output the following:
 
-![Screenshot of default template](examples/screenshot-default-mid.png)
+<img src="examples/screenshot-default-mid.png" width="597">
 
     <ul class="pagination">
       <li><a href="/foo/page/7">&laquo; Previous</a></li>
