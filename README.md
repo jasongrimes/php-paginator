@@ -19,7 +19,7 @@ Default template:
 <img src="examples/screenshot-default-mid.png" width="597"><br/>
 <img src="examples/screenshot-default-last.png" width="534"><br/>
 
-Small pager control (useful for mobile interfaces):
+Small template (useful for mobile interfaces):
 
 <img src="examples/screenshot-small-first.png" width="157"><br/>
 <img src="examples/screenshot-small-mid.png" width="220"><br/>
