@@ -6,6 +6,25 @@ PHP Paginator
 
 A lightweight PHP paginator, for generating pagination controls like Stack Overflow or Flickr.
 
+## Examples
+
+    $totalItems = 1000;
+    $itemsPerPage = 50;
+    $urlPattern = '/foo/page/(:num)';
+    $currentPage = 1;
+
+    $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+
+![](examples/screenshot-default-first.png)
+
+    $paginator->setCurrentPage(8);
+
+![](examples/screenshot-default-mid.png)
+
+    $paginator->setCurrentPage(20);
+
+![](examples/screenshot-default-last.png)
+
 ## Installation
 
 Install with composer: 
