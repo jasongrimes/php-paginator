@@ -1,7 +1,7 @@
 {
     "name": "jasongrimes/paginator",
     "type": "library",
-    "description": "A lightweight PHP paginator, for generating pagination controls like Stack Overflow or Flickr.",
+    "description": "A lightweight PHP paginator, for generating pagination controls in the style of Stack Overflow and Flickr.",
     "keywords": ["paginator", "pagination", "pager"],
     "homepage": "http://github.com/jasongrimes/php-paginator",
     "license": "MIT",
