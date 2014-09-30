@@ -1,30 +1,28 @@
 {% if paginator.numPages > 1 %}
-    <div style="width: {{ paginator.nextUrl and paginator.prevUrl ? '210px' : '150px' }}">
-        <div class="input-group">
-            {% if paginator.prevUrl %}
-                <span class="input-group-btn">
-                    <a href="{{ paginator.prevUrl }}" class="btn btn-default" type="button">&laquo; Prev</a>
-                </span>
-            {% endif %}
+    <div class="input-group" style="width: 1px;">
+        {% if paginator.prevUrl %}
+            <span class="input-group-btn">
+                <a href="{{ paginator.prevUrl }}" class="btn btn-default" type="button">&laquo; Prev</a>
+            </span>
+        {% endif %}
 
-            <select class="form-control paginator-select-page" style="-webkit-appearance: none; -moz-appearance: none; appearance: none;">
-                {% for page in paginator.pages %}
-                    {% if page.url %}
-                        <option value="{{ page.url }}"{{ page.isCurrent ? 'selected' : '' }}>
-                            Page {{ page.num }}
-                        </option>
-                    {% else %}
-                        <option disabled>{{ page.num }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
+        <select class="form-control paginator-select-page" style="width: auto; cursor: pointer; -webkit-appearance: none; -moz-appearance: none; appearance: none;">
+            {% for page in paginator.pages %}
+                {% if page.url %}
+                    <option value="{{ page.url }}"{{ page.isCurrent ? 'selected' : '' }}>
+                        Page {{ page.num }}
+                    </option>
+                {% else %}
+                    <option disabled>{{ page.num }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
 
-            {% if paginator.nextUrl %}
-                <span class="input-group-btn">
-                    <a href="{{ paginator.nextUrl }}" class="btn btn-default" type="button">Next &raquo;</a>
-                </span>
-            {% endif %}
-        </div>
+        {% if paginator.nextUrl %}
+            <span class="input-group-btn">
+                <a href="{{ paginator.nextUrl }}" class="btn btn-default" type="button">Next &raquo;</a>
+            </span>
+        {% endif %}
     </div>
 {% endif %}
 
