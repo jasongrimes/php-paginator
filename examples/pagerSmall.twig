@@ -31,6 +31,15 @@
         $('.paginator-select-page').on('change', function() {
             document.location = $(this).val();
         });
+        // Workaround to prevent iOS from zooming the page when clicking the select list:
+        $('.paginator-select-page')
+            .on('focus', function() {
+                $(this).css('font-size', '16px');
+            })
+            .on('blur', function() {
+                $(this).css('font-size', '');
+            })
+        ;
     });
 #}
 
