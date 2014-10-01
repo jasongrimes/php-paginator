@@ -61,6 +61,20 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->paginator->getPrevUrl());
     }
 
+    /**
+     * @dataProvider getTestData
+     */
+    public function testGetPages($numPages, $currentPage, $maxPages, $expected)
+    {
+        $paginator = new Paginator($numPages, 1, $currentPage);
+        $paginator->setMaxPagesToShow($maxPages);
+
+        $pages = $paginator->getPages();
+        $pageNums = array_map(function($page) { return $page['num']; }, $pages);
+
+        $this->assertEquals($expected, $pageNums);
+    }
+
     public function getTestData()
     {
         return array(
@@ -83,17 +97,27 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getTestData
+     * @dataProvider getRangeData
      */
-    public function testGetPages($numPages, $currentPage, $maxPages, $expected)
+    public function testGetItemRanges($numItems, $itemsPerPage, $currentPage, $expectedFirst, $expectedLast)
     {
-        $paginator = new Paginator($numPages, 1, $currentPage);
-        $paginator->setMaxPagesToShow($maxPages);
+        $paginator = new Paginator($numItems, $itemsPerPage, $currentPage);
 
-        $pages = $paginator->getPages();
-        $pageNums = array_map(function($page) { return $page['num']; }, $pages);
+        $this->assertEquals($numItems, $paginator->getTotalItems());
+        $this->assertEquals($expectedFirst, $paginator->getCurrentPageFirstItem());
+        $this->assertEquals($expectedLast, $paginator->getCurrentPageLastItem());
 
-        $this->assertEquals($expected, $pageNums);
+    }
+
+    public function getRangeData()
+    {
+        return array(
+            // $numItems, $itemsPerPage, $currentPage, $expectedFirstItem, $expectedLastItem
+            array(95, 10, 1, 1, 10),
+            array(95, 10, 2, 11, 20),
+            array(95, 10, 10, 91, 95),
+            array(95, 10, 11, null, null), // If current page exceeds total items, first and last item are null.
+        );
     }
 
 }

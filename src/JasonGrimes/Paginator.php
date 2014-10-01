@@ -6,7 +6,7 @@ class Paginator
 {
     const NUM_PLACEHOLDER = '(:num)';
 
-    protected $numItems;
+    protected $totalItems;
     protected $numPages;
     protected $itemsPerPage;
     protected $currentPage;
@@ -14,14 +14,14 @@ class Paginator
     protected $maxPagesToShow = 10;
 
     /**
-     * @param int $numItems The total number of items.
+     * @param int $totalItems The total number of items.
      * @param int $itemsPerPage The number of items per page.
      * @param int $currentPage The current page number.
      * @param string $urlPattern A URL for each page, with (:num) as a placeholder for the page number. Ex. '/foo/page/(:num)'
      */
-    public function __construct($numItems, $itemsPerPage, $currentPage, $urlPattern = '')
+    public function __construct($totalItems, $itemsPerPage, $currentPage, $urlPattern = '')
     {
-        $this->numItems = $numItems;
+        $this->totalItems = $totalItems;
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
         $this->urlPattern = $urlPattern;
@@ -31,7 +31,7 @@ class Paginator
 
     protected function updateNumPages()
     {
-        $this->numPages = (int) ceil($this->numItems/$this->itemsPerPage);
+        $this->numPages = (int) ceil($this->totalItems/$this->itemsPerPage);
     }
 
     /**
@@ -88,20 +88,20 @@ class Paginator
     }
 
     /**
-     * @param int $numItems
+     * @param int $totalItems
      */
-    public function setNumItems($numItems)
+    public function setTotalItems($totalItems)
     {
-        $this->numItems = $numItems;
+        $this->totalItems = $totalItems;
         $this->updateNumPages();
     }
 
     /**
      * @return int
      */
-    public function getNumItems()
+    public function getTotalItems()
     {
-        return $this->numItems;
+        return $this->totalItems;
     }
 
     /**
@@ -301,5 +301,31 @@ class Paginator
     public function __toString()
     {
         return $this->toHtml();
+    }
+
+    public function getCurrentPageFirstItem()
+    {
+        $first = ($this->currentPage - 1) * $this->itemsPerPage + 1;
+
+        if ($first > $this->totalItems) {
+            return null;
+        }
+
+        return $first;
+    }
+
+    public function getCurrentPageLastItem()
+    {
+        $first = $this->getCurrentPageFirstItem();
+        if ($first === null) {
+            return null;
+        }
+
+        $last = $first + $this->itemsPerPage - 1;
+        if ($last > $this->totalItems) {
+            return $this->totalItems;
+        }
+
+        return $last;
     }
 }
