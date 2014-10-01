@@ -128,8 +128,11 @@ For example:
     
     <p>
         <?php echo $paginator->getTotalItems(); ?> found.
-        Showing <?php echo $paginator->getCurrentPageFirstItem(); ?> 
-        - <?php echo $paginator->getCurrentPageLastItem(); ?>.
+        
+        Showing 
+        <?php echo $paginator->getCurrentPageFirstItem(); ?> 
+        - 
+        <?php echo $paginator->getCurrentPageLastItem(); ?>.
     </p>
 
 
