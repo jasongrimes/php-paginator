@@ -62,11 +62,16 @@ Here's a quick example using the defaults:
       <body>
 
         <?php 
-          // Example of rendering the pagination control with the default, built-in template.
-          // You can also iterate over the pages and render them manually. See below for details.
+          // Example of rendering the pagination control with the built-in template.
+          // See below for information about using other templates or custom rendering.
 
           echo $paginator; 
         ?>
+        <p>
+            <?php echo $paginator->getTotalItems(); ?> found.
+            Showing <?php echo $paginator->getCurrentPageFirstItem(); ?> 
+            - <?php echo $paginator->getCurrentPageLastItem(); ?>.
+        </p>
 
       </body>
     </html>
@@ -98,6 +103,7 @@ To render it with one of the other example templates, just make sure the variabl
     include '../vendor/jasongrimes/paginator/examples/pagerSmall.phtml';
     
 <img src="examples/screenshot-small-mid.png" width="220"><br/>
+1000 found. Showing 401 - 450.
 
 If the example templates don't suit you, you can iterate over the paginated data to render your own pagination control.
 
