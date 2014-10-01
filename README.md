@@ -79,6 +79,7 @@ Here's a quick example using the defaults:
 This will output the following:
 
 <img src="examples/screenshot-default-mid.png" width="597">
+1000 found. Showing 401 - 450.
 
     <ul class="pagination">
       <li><a href="/foo/page/7">&laquo; Previous</a></li>
@@ -103,7 +104,6 @@ To render it with one of the other example templates, just make sure the variabl
     include '../vendor/jasongrimes/paginator/examples/pagerSmall.phtml';
     
 <img src="examples/screenshot-small-mid.png" width="220"><br/>
-1000 found. Showing 401 - 450.
 
 If the example templates don't suit you, you can iterate over the paginated data to render your own pagination control.
 
