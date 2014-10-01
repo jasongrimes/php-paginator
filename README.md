@@ -67,19 +67,13 @@ Here's a quick example using the defaults:
 
           echo $paginator; 
         ?>
-        <p>
-            <?php echo $paginator->getTotalItems(); ?> found.
-            Showing <?php echo $paginator->getCurrentPageFirstItem(); ?> 
-            - <?php echo $paginator->getCurrentPageLastItem(); ?>.
-        </p>
-
+        
       </body>
     </html>
 
 This will output the following:
 
 <img src="examples/screenshot-default-mid.png" width="597">
-1000 found. Showing 401 - 450.
 
     <ul class="pagination">
       <li><a href="/foo/page/7">&laquo; Previous</a></li>
@@ -131,6 +125,13 @@ For example:
             <li><a href="<?php echo $paginator->getNextUrl(); ?>">Next &raquo;</a></li>
         <?php endif; ?>
     </ul>
+    
+    <p>
+        <?php echo $paginator->getTotalItems(); ?> found.
+        Showing <?php echo $paginator->getCurrentPageFirstItem(); ?> 
+        - <?php echo $paginator->getCurrentPageLastItem(); ?>.
+    </p>
+
 
 See the [examples](examples) directory for more sample templates.
 
