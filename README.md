@@ -95,6 +95,7 @@ This will output the following:
 To render it with one of the other example templates, just make sure the variable is named `$paginator` and then include the template file:
 
     $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+    
     include '../vendor/jasongrimes/paginator/examples/pagerSmall.phtml';
     
 <img src="examples/screenshot-small-mid.png" width="220"><br/>
