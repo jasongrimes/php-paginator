@@ -40,36 +40,36 @@ Install with composer:
 
 Here's a quick example using the defaults:
 
-    <?php
+```php
+<?php
+
+require '../vendor/autoload.php';
+
+use JasonGrimes\Paginator;
+
+$totalItems = 1000;
+$itemsPerPage = 50;
+$currentPage = 8;
+$urlPattern = '/foo/page/(:num)';
+
+$paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+
+?>
+<html>
+<head>
+<!-- The default, built-in template supports the Twitter Bootstrap pagination styles. -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+    <?php 
+    // Example of rendering the pagination control with the built-in template.
+    // See below for information about using other templates or custom rendering.
     
-    require '../vendor/autoload.php';
-
-    use JasonGrimes\Paginator;
-
-    $totalItems = 1000;
-    $itemsPerPage = 50;
-    $currentPage = 8;
-    $urlPattern = '/foo/page/(:num)';
-
-    $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
-
+    echo $paginator; 
     ?>
-    <html>
-      <head>
-        <!-- The default, built-in template supports the Twitter Bootstrap pagination styles. -->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-      </head>
-      <body>
-
-        <?php 
-          // Example of rendering the pagination control with the built-in template.
-          // See below for information about using other templates or custom rendering.
-
-          echo $paginator; 
-        ?>
-        
-      </body>
-    </html>
+</body>
+</html>
+```
 
 This will output the following:
 
