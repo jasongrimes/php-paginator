@@ -146,18 +146,18 @@ See the [examples](examples) directory for more sample templates.
 `getPages()` returns a data structure like the following:
 
     array ( 
-        array ('num' => 1, 'url' => '/foo/page/1', 'isCurrent' => false),
-        array ('num' => '...', 'url' => NULL, 'isCurrent' => false),
-        array ('num' => 5, 'url' => '/foo/page/5', 'isCurrent' => false),
-        array ('num' => 6, 'url' => '/foo/page/6', 'isCurrent' => false),
-        array ('num' => 7, 'url' => '/foo/page/7', 'isCurrent' => false),
-        array ('num' => 8, 'url' => '/foo/page/8', 'isCurrent' => true),
-        array ('num' => 9, 'url' => '/foo/page/9', 'isCurrent' => false),
-        array ('num' => 10, 'url' => '/foo/page/10', 'isCurrent' => false),
-        array ('num' => 11, 'url' => '/foo/page/11', 'isCurrent' => false),
-        array ('num' => 12, 'url' => '/foo/page/12', 'isCurrent' => false),
-        array ('num' => '...', 'url' => NULL, 'isCurrent' => false),
-        array ('num' => 20, 'url' => '/foo/page/20', 'isCurrent' => false),
+        array ('num' => 1,     'url' => '/foo/page/1',  'isCurrent' => false),
+        array ('num' => '...', 'url' => NULL,           'isCurrent' => false),
+        array ('num' => 5,     'url' => '/foo/page/5',  'isCurrent' => false),
+        array ('num' => 6,     'url' => '/foo/page/6',  'isCurrent' => false),
+        array ('num' => 7,     'url' => '/foo/page/7',  'isCurrent' => false),
+        array ('num' => 8,     'url' => '/foo/page/8',  'isCurrent' => true),
+        array ('num' => 9,     'url' => '/foo/page/9',  'isCurrent' => false),
+        array ('num' => 10,    'url' => '/foo/page/10', 'isCurrent' => false),
+        array ('num' => 11,    'url' => '/foo/page/11', 'isCurrent' => false),
+        array ('num' => 12,    'url' => '/foo/page/12', 'isCurrent' => false),
+        array ('num' => '...', 'url' => NULL,           'isCurrent' => false),
+        array ('num' => 20,    'url' => '/foo/page/20', 'isCurrent' => false),
     )
 
 ## Customizing the number of pages shown
