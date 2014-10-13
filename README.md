@@ -34,7 +34,7 @@ The small template renders the page number as a select list to save space:
 
 Install with composer: 
 
-    composer require "jasongrimes/paginator:~0.1"
+    composer require "jasongrimes/paginator:~1.0"
 
 ## Basic usage
 
