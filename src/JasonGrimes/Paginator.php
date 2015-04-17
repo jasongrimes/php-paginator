@@ -21,10 +21,12 @@ class Paginator
      */
     public function __construct($totalItems, $itemsPerPage, $currentPage, $urlPattern = '')
     {
-        $this->totalItems = $totalItems;
-        $this->itemsPerPage = $itemsPerPage;
-        $this->currentPage = $currentPage;
-        $this->urlPattern = $urlPattern;
+
+        // Improved validation
+        $this->totalItems     = $totalItems >= 0 ? $totalItems : 0;
+        $this->itemsPerPage   = $itemsPerPage >= 1 ? $itemsPerPage : 5;
+        $this->currentPage    = $currentPage != '' || $currentPage >= 1 ? $currentPage : 1;
+        $this->urlPattern     = $urlPattern != '' ? $urlPattern : '/page/(:num)';
 
         $this->updateNumPages();
     }
@@ -327,5 +329,16 @@ class Paginator
         }
 
         return $last;
+    }
+
+    /**
+     * Get the offset for database queries.
+     * 
+     * @return int returns the count # of the first element on the page
+     */
+    public function getOffset() {
+        
+        $offset = ($this->itemsPerPage * ($this->currentPage - 1)) ;
+        
     }
 }
