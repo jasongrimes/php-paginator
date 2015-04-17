@@ -338,18 +338,18 @@ class Paginator
         $str = $this->strings[$strKey];
         
         if ($page != null) {
-            $vars = [
+            $vars = array(
                 'url' =>  $page['url'],
                 'active' => ($page['isCurrent'] ? ' class="location"' : ''),
                 'num' => $page['num']
-            ];
+            );
         }
         else {
         
-            $vars = [
+            $vars = array(
                 'next' => $this->getNextUrl(),
                 'prev' => $this->getPrevUrl()
-            ];  
+            );  
         }
         
         foreach ($vars as $key => $value) {
