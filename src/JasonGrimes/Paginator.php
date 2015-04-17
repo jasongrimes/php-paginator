@@ -12,6 +12,7 @@ class Paginator
     protected $currentPage;
     protected $urlPattern;
     protected $maxPagesToShow = 10;
+    protected $strings;
 
     /**
      * @param int $totalItems The total number of items.
@@ -21,10 +22,14 @@ class Paginator
      */
     public function __construct($totalItems, $itemsPerPage, $currentPage, $urlPattern = '')
     {
-        $this->totalItems = $totalItems;
-        $this->itemsPerPage = $itemsPerPage;
-        $this->currentPage = $currentPage;
-        $this->urlPattern = $urlPattern;
+
+        // Improved validation
+        $this->totalItems     = $totalItems >= 0 ? $totalItems : 0;
+        $this->itemsPerPage   = $itemsPerPage >= 1 ? $itemsPerPage : 5;
+        $this->currentPage    = $currentPage != '' || $currentPage >= 1 ? $currentPage : 1;
+        $this->urlPattern     = $urlPattern != '' ? $urlPattern : '/page/(:num)';
+
+        $this->setDefaultStrings();
 
         $this->updateNumPages();
     }
@@ -277,25 +282,80 @@ class Paginator
             return '';
         }
 
-        $html = '<ul class="pagination">';
+        $html = $this->strings['ulStart'];
         if ($this->getPrevUrl()) {
-            $html .= '<li><a href="' . $this->getPrevUrl() . '">&laquo; Previous</a></li>';
+            $prev = $this->parseString('prev');
+            $html .= $prev;
         }
 
         foreach ($this->getPages() as $page) {
+            
             if ($page['url']) {
-                $html .= '<li' . ($page['isCurrent'] ? ' class="active"' : '') . '><a href="' . $page['url'] . '">' . $page['num'] . '</a></li>';
+                $pageLink = $this->parseString('pageLink', $page);
+                $html .= $pageLink;
             } else {
-                $html .= '<li class="disabled"><span>' . $page['num'] . '</span></li>';
+                $pageLink = $this->parseString('disabledPageLink', $page);
+                $html .= $pageLink;
             }
         }
 
         if ($this->getNextUrl()) {
-            $html .= '<li><a href="' . $this->getNextUrl() . '">Next &raquo;</a></li>';
+            $next = $this->parseString('next');
+            $html .= $next;
         }
-        $html .= '</ul>';
+        $html .= $this->strings['ulEnd'];
 
         return $html;
+    }
+
+    /**
+     * Sets the default strings with the default HTML.
+     */
+    protected function setDefaultStrings() {
+        
+        $this->strings['ulStart'] = '<ul class="pagination">';
+        $this->strings['ulEnd'] = '</ul>';
+        
+        $this->strings['pageLink'] = '<li (:active)><a href="(:url)">(:num)</a></li>';
+        $this->strings['disabledPageLink'] = '<li class="disabled"><span>(:num)</span></li>';
+        
+        $this->strings['prev'] = '<li class="li-pagination-prev"><a class="pagination-prev icon" href="(:prev)">&laquo; Previous</a></li>';
+        $this->strings['next'] = '<li class="li-pagination-next"><a class="pagination-next icon" href="(:next)">Next &raquo;</a></li>';
+    }
+
+    /**
+     * Allows you to edit a string in the pagination layout
+     * 
+     * @param key of the string $$key
+     * @param type $html
+     */
+    public function setString($key, $html) {
+        $this->strings[$key] = $html;
+    }
+
+    protected function parseString($strKey, $page = null)
+    {
+        $str = $this->strings[$strKey];
+        
+        if ($page != null) {
+            $vars = array(
+                'url' =>  $page['url'],
+                'active' => ($page['isCurrent'] ? ' class="location"' : ''),
+                'num' => $page['num']
+            );
+        }
+        else {
+        
+            $vars = array(
+                'next' => $this->getNextUrl(),
+                'prev' => $this->getPrevUrl()
+            );  
+        }
+        
+        foreach ($vars as $key => $value) {
+            $str = str_replace('(:'.$key.')', $value, $str);
+        }
+        return $str;
     }
 
     public function __toString()
@@ -327,5 +387,14 @@ class Paginator
         }
 
         return $last;
+    }
+
+    /**
+     * Get the offset for database queries.
+     * 
+     * @return int returns the count # of the first element on the page
+     */
+    public function getOffset() {
+        return ($this->itemsPerPage * ($this->currentPage - 1)) ;
     }
 }

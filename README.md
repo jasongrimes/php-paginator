@@ -139,6 +139,20 @@ For example:
 
 See the [examples](examples) directory for more sample templates.
 
+## Custom HTML and Strings
+
+The HTML can be completely altered from within the class without extending or manually iterating. By using strings we can edit the HTML on the fly.
+
+    $paginator = new \Helpers\Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+
+    // each of the available strings are listed below
+    $this->strings['ulStart'] = '<ul class="pagination">'; // Start of the <ul>
+    $this->strings['ulEnd'] = '</ul>'; // end of the <ul>
+    $this->strings['pageLink'] = '<li (:active)><a href="(:url)">(:num)</a></li>'; // <li> object for each page of the pagination
+    $this->strings['disabledPageLink'] = '<li class="disabled"><span>(:num)</span></li>'; // disabled page
+    $this->strings['prev'] = '<li class="li-pagination-prev"><a class="pagination-prev icon" href="(:prev)">&laquo; Previous</a></li>'; // previous link
+    $this->strings['next'] = '<li class="li-pagination-next"><a class="pagination-next icon" href="(:next)">Next &raquo;</a></li>'; // next link
+
 ## Pages data structure
 
     $paginator->getPages();
