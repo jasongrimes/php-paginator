@@ -12,6 +12,8 @@ class Paginator
     protected $currentPage;
     protected $urlPattern;
     protected $maxPagesToShow = 10;
+    protected $previousText = 'Previous';
+    protected $nextText = 'Next';
 
     /**
      * @param int $totalItems The total number of items.
@@ -279,7 +281,7 @@ class Paginator
 
         $html = '<ul class="pagination">';
         if ($this->getPrevUrl()) {
-            $html .= '<li><a href="' . $this->getPrevUrl() . '">&laquo; Previous</a></li>';
+            $html .= '<li><a href="' . $this->getPrevUrl() . '">&laquo; '. $this->previousText .'</a></li>';
         }
 
         foreach ($this->getPages() as $page) {
@@ -291,7 +293,7 @@ class Paginator
         }
 
         if ($this->getNextUrl()) {
-            $html .= '<li><a href="' . $this->getNextUrl() . '">Next &raquo;</a></li>';
+            $html .= '<li><a href="' . $this->getNextUrl() . '">'. $this->nextText .' &raquo;</a></li>';
         }
         $html .= '</ul>';
 
@@ -327,5 +329,17 @@ class Paginator
         }
 
         return $last;
+    }
+
+    public function setPreviousText($text)
+    {
+        $this->previousText = $text;
+        return $this;
+    }
+
+    public function setNextText($text)
+    {
+        $this->nextText = $text;
+        return $this;
     }
 }
