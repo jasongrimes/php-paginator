@@ -14,6 +14,7 @@ class Paginator
     protected $maxPagesToShow = 10;
     protected $previousText = 'Previous';
     protected $nextText = 'Next';
+    protected $numPlaceholderTarget = "page";
 
     /**
      * @param int $totalItems The total number of items.
@@ -123,6 +124,17 @@ class Paginator
     }
 
     /**
+     * @param string $target specifies whether the NUM_PLACEHOLDER in the url
+     *                       should represent pages or items; possible values:
+     *                       - page
+     *                       - item
+     */
+    public function setNumPlaceholderTarget($target)
+    {      
+        $this->numPlaceholderTarget = $target;      
+    }
+
+    /**
      * @return string
      */
     public function getUrlPattern()
@@ -136,9 +148,26 @@ class Paginator
      */
     public function getPageUrl($pageNum)
     {
+      
+      if ($this->numPlaceholderTarget == "page") {
+              
+          return str_replace(self::NUM_PLACEHOLDER, $pageNum, $this->urlPattern);
+        
+      } else if ($this->numPlaceholderTarget == "item") {
+        
+          // replaces NUM_PLACEHOLDER by the number of the first item
+          // on the page, assumes that the items are numbered starting with zero
+          return str_replace(self::NUM_PLACEHOLDER, ($pageNum-1)*$this->itemsPerPage, $this->urlPattern);
+        
+      } else {
+      
+        // use the default "page" if invalid numPlaceHolder target was specified
         return str_replace(self::NUM_PLACEHOLDER, $pageNum, $this->urlPattern);
+        
+      }
+    
     }
-
+    
     public function getNextPage()
     {
         if ($this->currentPage < $this->numPages) {
