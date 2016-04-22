@@ -37,6 +37,8 @@ class Paginator
     }
 
     /**
+     * Sets maximum page button count which will shown in pagination
+     * 
      * @param int $maxPagesToShow
      * @throws \InvalidArgumentException if $maxPagesToShow is less than 3.
      */
@@ -49,6 +51,7 @@ class Paginator
     }
 
     /**
+     * Gets maximum page button count which will shown in pagination
      * @return int
      */
     public function getMaxPagesToShow()
@@ -57,6 +60,8 @@ class Paginator
     }
 
     /**
+     * Sets current page number dynamically
+     * 
      * @param int $currentPage
      */
     public function setCurrentPage($currentPage)
@@ -65,6 +70,8 @@ class Paginator
     }
 
     /**
+     * Gets current page number
+     * 
      * @return int
      */
     public function getCurrentPage()
@@ -73,6 +80,8 @@ class Paginator
     }
 
     /**
+     * Sets item count for each page
+     * 
      * @param int $itemsPerPage
      */
     public function setItemsPerPage($itemsPerPage)
@@ -82,6 +91,7 @@ class Paginator
     }
 
     /**
+     * Gets item count for per page
      * @return int
      */
     public function getItemsPerPage()
@@ -90,6 +100,8 @@ class Paginator
     }
 
     /**
+     * Sets total item count for pagination
+     * 
      * @param int $totalItems
      */
     public function setTotalItems($totalItems)
@@ -99,6 +111,8 @@ class Paginator
     }
 
     /**
+     * Gets total item count in pagination
+     * 
      * @return int
      */
     public function getTotalItems()
@@ -107,6 +121,8 @@ class Paginator
     }
 
     /**
+     * Gets total page count for pagination
+     * 
      * @return int
      */
     public function getNumPages()
@@ -115,6 +131,8 @@ class Paginator
     }
 
     /**
+     * Sets Url pattern for building pagination links
+     * 
      * @param string $urlPattern
      */
     public function setUrlPattern($urlPattern)
@@ -123,6 +141,8 @@ class Paginator
     }
 
     /**
+     * Gets Url pattern for building pagination links
+     * 
      * @return string
      */
     public function getUrlPattern()
@@ -131,6 +151,8 @@ class Paginator
     }
 
     /**
+     * Gets current page url
+     * 
      * @param int $pageNum
      * @return string
      */
@@ -139,6 +161,11 @@ class Paginator
         return str_replace(self::NUM_PLACEHOLDER, $pageNum, $this->urlPattern);
     }
 
+    /**
+     * Gets next page number
+     * 
+     * @return string|null
+     */
     public function getNextPage()
     {
         if ($this->currentPage < $this->numPages) {
@@ -148,6 +175,11 @@ class Paginator
         return null;
     }
 
+    /**
+     * Gets previous page number
+     * 
+     * @return string|null
+     */
     public function getPrevPage()
     {
         if ($this->currentPage > 1) {
@@ -157,6 +189,11 @@ class Paginator
         return null;
     }
 
+    /**
+     * Gets next page url
+     * 
+     * @return string|null
+     */
     public function getNextUrl()
     {
         if (!$this->getNextPage()) {
@@ -167,6 +204,8 @@ class Paginator
     }
 
     /**
+     * Gets previous page url
+     * 
      * @return string|null
      */
     public function getPrevUrl()
@@ -257,6 +296,8 @@ class Paginator
     }
 
     /**
+     * Creates page ellipsis
+     * 
      * @return array
      */
     protected function createPageEllipsis()
@@ -305,6 +346,11 @@ class Paginator
         return $this->toHtml();
     }
 
+    /**
+     * Gets first item in current page
+     * 
+     * @return string|null
+     */
     public function getCurrentPageFirstItem()
     {
         $first = ($this->currentPage - 1) * $this->itemsPerPage + 1;
@@ -316,6 +362,11 @@ class Paginator
         return $first;
     }
 
+    /**
+     * Gets last item in current page
+     * 
+     * @return string|null
+     */
     public function getCurrentPageLastItem()
     {
         $first = $this->getCurrentPageFirstItem();
@@ -331,12 +382,22 @@ class Paginator
         return $last;
     }
 
+    /**
+     * Sets inner text of "Previous" button
+     * 
+     * @return string
+     */
     public function setPreviousText($text)
     {
         $this->previousText = $text;
         return $this;
     }
 
+    /**
+     * Sets inner text of "Next" button
+     * 
+     * @return string
+     */
     public function setNextText($text)
     {
         $this->nextText = $text;
