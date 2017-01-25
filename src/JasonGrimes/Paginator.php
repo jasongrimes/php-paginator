@@ -12,6 +12,7 @@ class Paginator
     protected $currentPage;
     protected $urlPattern;
     protected $maxPagesToShow = 10;
+    protected $skipFirstPage;
     protected $previousText = 'Previous';
     protected $nextText = 'Next';
 
@@ -21,13 +22,13 @@ class Paginator
      * @param int $currentPage The current page number.
      * @param string $urlPattern A URL for each page, with (:num) as a placeholder for the page number. Ex. '/foo/page/(:num)'
      */
-    public function __construct($totalItems, $itemsPerPage, $currentPage, $urlPattern = '')
+    public function __construct($totalItems, $itemsPerPage, $currentPage, $urlPattern = '',$skipFirstPage = false)
     {
         $this->totalItems = $totalItems;
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
         $this->urlPattern = $urlPattern;
-
+        $this->skipFirstPage = $skipFirstPage;
         $this->updateNumPages();
     }
 
@@ -136,15 +137,23 @@ class Paginator
      */
     public function getPageUrl($pageNum)
     {
+        if($pageNum == 1  && $this->skipFirstPage)
+           $pageNum = '';
+        
         return str_replace(self::NUM_PLACEHOLDER, $pageNum, $this->urlPattern);
+        
     }
 
     public function getNextPage()
-    {
+    {        
+        
+        if($this->currentPage < $this->numPages && $this->currentPage == '' && $this->skipFirstPage)
+            return $this->currentPage + 2;
+        
         if ($this->currentPage < $this->numPages) {
             return $this->currentPage + 1;
         }
-
+        
         return null;
     }
 
