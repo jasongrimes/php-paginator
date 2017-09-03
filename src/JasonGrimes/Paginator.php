@@ -273,47 +273,31 @@ class Paginator
      *
      * @return string
      */
-    public function toHtml()
-    {
+     public function toHtml()
+     {
         if ($this->numPages <= 1) {
             return '';
         }
 
         $html = '<ul class="pagination">';
         if ($this->getPrevUrl()) {
-            $html .= '<li><a href="' . $this->getPrevUrl() . '">&laquo; '. $this->previousText .'</a></li>';
+            $html .= '<li class="page-item"><a class="page-link" href="' . $this->getPrevUrl() . '">&laquo; '. $this->previousText .'</a></li>';
         }
 
         foreach ($this->getPages() as $page) {
             if ($page['url']) {
-                $html .= '<li' . ($page['isCurrent'] ? ' class="active"' : '') . '><a href="' . $page['url'] . '">' . $page['num'] . '</a></li>';
+                $html .= '<li' . ($page['isCurrent'] ? ' class="page-item active"' : '') . '><a class="page-link" href="' . $page['url'] . '">' . $page['num'] . '</a></li>';
             } else {
-                $html .= '<li class="disabled"><span>' . $page['num'] . '</span></li>';
+                $html .= '<li class="page-item disabled"><span class="page-link">' . $page['num'] . '</span></li>';
             }
         }
 
         if ($this->getNextUrl()) {
-            $html .= '<li><a href="' . $this->getNextUrl() . '">'. $this->nextText .' &raquo;</a></li>';
+            $html .= '<li class="page-item"><a class="page-link" href="' . $this->getNextUrl() . '">'. $this->nextText .' &raquo;</a></li>';
         }
         $html .= '</ul>';
 
         return $html;
-    }
-
-    public function __toString()
-    {
-        return $this->toHtml();
-    }
-
-    public function getCurrentPageFirstItem()
-    {
-        $first = ($this->currentPage - 1) * $this->itemsPerPage + 1;
-
-        if ($first > $this->totalItems) {
-            return null;
-        }
-
-        return $first;
     }
 
     public function getCurrentPageLastItem()
