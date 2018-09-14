@@ -20,13 +20,15 @@ class Paginator
      * @param int $itemsPerPage The number of items per page.
      * @param int $currentPage The current page number.
      * @param string $urlPattern A URL for each page, with (:num) as a placeholder for the page number. Ex. '/foo/page/(:num)'
+     * @param array $classList An array of class names you want to add to the pagination <ul> wrapper.
      */
-    public function __construct($totalItems, $itemsPerPage, $currentPage, $urlPattern = '')
+    public function __construct($totalItems, $itemsPerPage, $currentPage, $urlPattern = '', $classList = array())
     {
         $this->totalItems = $totalItems;
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
         $this->urlPattern = $urlPattern;
+        $this->classList = $classList;
 
         $this->updateNumPages();
     }
@@ -279,7 +281,7 @@ class Paginator
             return '';
         }
 
-        $html = '<ul class="pagination">';
+        $html = '<ul class="pagination '. implode(' ', $this->classList) .'">';
         if ($this->getPrevUrl()) {
             $html .= '<li><a href="' . htmlspecialchars($this->getPrevUrl()) . '">&laquo; '. $this->previousText .'</a></li>';
         }
