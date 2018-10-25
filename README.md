@@ -49,8 +49,8 @@ Here's a quick example using the defaults:
 
     $totalItems = 1000;
     $itemsPerPage = 50;
-    $currentPage = 8;
-    $urlPattern = '/foo/page/(:num)';
+    $currentPage = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_NUMBER_INT);
+    $urlPattern = '/?page=(:num)';
 
     $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 
