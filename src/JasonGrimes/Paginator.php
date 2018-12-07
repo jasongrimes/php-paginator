@@ -223,14 +223,18 @@ class Paginator
 
             // Build the list of pages.
             $pages[] = $this->createPage(1, $this->currentPage == 1);
-            if ($slidingStart > 2) {
+            if ($slidingStart > 3) {
                 $pages[] = $this->createPageEllipsis();
+            } else if($slidingStart == 3) {
+                $pages[] = $this->createPage(2);
             }
             for ($i = $slidingStart; $i <= $slidingEnd; $i++) {
                 $pages[] = $this->createPage($i, $i == $this->currentPage);
             }
-            if ($slidingEnd < $this->numPages - 1) {
+            if ($slidingEnd < $this->numPages - 2) {
                 $pages[] = $this->createPageEllipsis();
+            } else if($slidingEnd == $this->numPages - 2) {
+                $pages[] = $this->createPage($this->numPages - 1);
             }
             $pages[] = $this->createPage($this->numPages, $this->currentPage == $this->numPages);
         }
