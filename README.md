@@ -168,3 +168,13 @@ To change the default number of pages:
 
     $paginator->setMaxPagesToShow(5);
 
+
+## Customizing the language
+
+
+By default the texts appear in English, but you can change the texts of the previous and next buttons with the following methods.
+
+
+    $paginator->setPreviousText('Anterior');
+    
+    $paginator->setNextText('Siguiente');
