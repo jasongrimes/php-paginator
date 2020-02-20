@@ -103,6 +103,30 @@ To render it with one of the other example templates, just make sure the variabl
 
 If the example templates don't suit you, you can iterate over the paginated data to render your own pagination control.
 
+
+## Stylesheet
+
+By default, the Twitter bootstrap stylesheet is used. If you prefer to use your own styling, here is a very basic SCSS style:
+
+```scss
+.pagination {
+    li {
+        display: inline;
+        padding: 0.5em;
+        border: solid 1px #ccc;
+        border-right: none;
+
+        a, &.disabled {
+            text-decoration: none;
+        }
+
+        &:last-child {
+            border-right: solid 1px #ccc;
+        }
+    }
+}
+```
+
 ## Rendering a custom pagination control
 
 Use `$paginator->getPages()`, `$paginator->getNextUrl()`, and `$paginator->getPrevUrl()` to render a pagination control with your own HTML.
