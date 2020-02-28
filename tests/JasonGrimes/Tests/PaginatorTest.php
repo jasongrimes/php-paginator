@@ -3,6 +3,7 @@
 namespace JasonGrimes\Tests;
 
 use JasonGrimes\Paginator;
+use JasonGrimes\UrlGeneratorInterface;
 
 class PaginatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -118,6 +119,31 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
             array(95, 10, 10, 91, 95),
             array(95, 10, 11, null, null), // If current page exceeds total items, first and last item are null.
         );
+    }
+
+    public function testUseUrlGenerator()
+    {
+        $paginator = new Paginator(10, 2, 1, 'index?page='.Paginator::NUM_PLACEHOLDER);
+        /**
+         * @var UrlGeneratorInterface $urlGenerator
+         */
+        $urlGenerator = $this->getMock('JasonGrimes\UrlGeneratorInterface');
+        $urlGenerator
+            ->expects($this->any())
+            ->method('generatePageUrl')
+            ->will($this->returnValueMap(array(
+                array(
+                    1,  'url-for-page-1'
+                ),
+                array(
+                    13,  'url-for-page-13'
+                )
+            )));
+        $paginator->setUrlGenerator($urlGenerator);
+        $this->assertEquals('url-for-page-1', $paginator->getPageUrl(1));
+        $this->assertEquals('url-for-page-13', $paginator->getPageUrl(13));
+        //Only url generator object is called when present
+        $this->assertEquals('', $paginator->getPageUrl(123));
     }
 
 }

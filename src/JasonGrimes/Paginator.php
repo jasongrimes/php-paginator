@@ -14,6 +14,10 @@ class Paginator
     protected $maxPagesToShow = 10;
     protected $previousText = 'Previous';
     protected $nextText = 'Next';
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
 
     /**
      * @param int $totalItems The total number of items.
@@ -136,6 +140,9 @@ class Paginator
      */
     public function getPageUrl($pageNum)
     {
+        if($this->urlGenerator) {
+            return $this->urlGenerator->generatePageUrl($pageNum);
+        }
         return str_replace(self::NUM_PLACEHOLDER, $pageNum, $this->urlPattern);
     }
 
@@ -245,7 +252,7 @@ class Paginator
      *
      * @param int $pageNum
      * @param bool $isCurrent
-     * @return Array
+     * @return array
      */
     protected function createPage($pageNum, $isCurrent = false)
     {
@@ -340,6 +347,12 @@ class Paginator
     public function setNextText($text)
     {
         $this->nextText = $text;
+        return $this;
+    }
+
+    public function setUrlGenerator(UrlGeneratorInterface $urlGenerator)
+    {
+        $this->urlGenerator = $urlGenerator;
         return $this;
     }
 }
