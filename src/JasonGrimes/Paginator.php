@@ -342,4 +342,9 @@ class Paginator
         $this->nextText = $text;
         return $this;
     }
+
+    public function getOffset()
+    {
+        return ($this->currentPage - 1) * $this->itemsPerPage;
+    }
 }
