@@ -281,19 +281,23 @@ class Paginator
 
         $html = '<ul class="pagination">';
         if ($this->getPrevUrl()) {
-            $html .= '<li><a href="' . htmlspecialchars($this->getPrevUrl()) . '">&laquo; '. $this->previousText .'</a></li>';
+            $html .= '<li><a href="' . htmlspecialchars($this->getPrevUrl()) . '" aria-label="Go to the previous page">&laquo; '. $this->previousText .'</a></li>';
         }
 
         foreach ($this->getPages() as $page) {
             if ($page['url']) {
-                $html .= '<li' . ($page['isCurrent'] ? ' class="active"' : '') . '><a href="' . htmlspecialchars($page['url']) . '">' . htmlspecialchars($page['num']) . '</a></li>';
+                $html .= '<li' . ($page['isCurrent'] ? ' class="active"' : '') . '>';
+                $html .= '<a href="' . htmlspecialchars($page['url']) . '" aria-label="Go to page ' . $page['num'] . '"' . ($page['isCurrent'] ? ' aria-current="true"' : '') . '>';
+                $html .= htmlspecialchars($page['num']);
+                $html .= '</a>';
+                $html .= '</li>';
             } else {
-                $html .= '<li class="disabled"><span>' . htmlspecialchars($page['num']) . '</span></li>';
+                $html .= '<li class="disabled" aria-hidden="true"><span>' . htmlspecialchars($page['num']) . '</span></li>';
             }
         }
 
         if ($this->getNextUrl()) {
-            $html .= '<li><a href="' . htmlspecialchars($this->getNextUrl()) . '">'. $this->nextText .' &raquo;</a></li>';
+            $html .= '<li><a href="' . htmlspecialchars($this->getNextUrl()) . '" aria-label="Go to the next page">'. $this->nextText .' &raquo;</a></li>';
         }
         $html .= '</ul>';
 
